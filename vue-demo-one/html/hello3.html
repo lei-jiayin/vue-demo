@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+    //定义全局组件
+    // Vue.component("counter",{
+    //     template:"<button @click='count++'>点我试试，我记住你{{count}}次了！</button>",
+    //     //保证可复用，不能共享数据
+    //     data(){
+    //        return {
+    //            count:0
+    //        }
+    //     }
+    // })
+
+    //局部组件
+    const counter = {
+        template:"<button @click='count++'>点我试试，我记住你{{count}}次了！</button>",
+        //保证可复用，不能共享数据
+        data(){
+            return {
+                count:0
+            }
+        }
+    }
+
+    const vue = new Vue({
+        el:"#app",
+        data:{
+        },
+        components:{
+            // counter: counter,
+            counter //两者皆可定义局部组件
+        }
+    });
+</script>
+</body>
+</html>

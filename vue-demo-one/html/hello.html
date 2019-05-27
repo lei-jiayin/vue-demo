@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="handleClick">点我</button>
+        <br>
+        <!-- v-model 双向绑定属性 -->
+        <input type="text" v-model="num"> <button @click="num++">+</button><button @click="num--">-</button>
+        <h1>
+            <!--{{text}} v-text显示原始字符-->
+            <span v-text="text"></span>测试
+            <br>
+            {{num}}位同学参加测试。。
+        </h1>
+        <!-- v-html 可将标签转化 -->
+        <span v-html="text"></span>
+        <hr>
+        <h1>课程列表</h1>
+        <input type="checkbox" v-model="lessons" value="Java"/>Java <br>
+        <input type="checkbox" v-model="lessons" value="Java1"/>Java1 <br>
+        <input type="checkbox" v-model="lessons" value="Java2"/>Java2 <br>
+        <h1>
+            您已参加一下课程：{{lessons.join(",")}}
+        </h1>
+        <hr>
+        <!-- 遍历数组 -->
+        <ul>
+            <li v-for="(u,i) in users" :key="i">
+               <!-- {{i + 1}}--> {{u.name + ","+u.gender+","+u.age}}
+            </li>
+        </ul>
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(v,k,i) in users[0]">
+               {{i}}-{{k}}:{{v}}
+            </li>
+        </ul>
+        <hr>
+        <button @click="show=!show">点击切换</button>
+        <h1 v-if="show">
+            好个屁
+        </h1>
+        <!-- 这里显示的是由display控制 -->
+        <h1 v-show="show">
+            真想
+        </h1>
+        <hr>
+        <ul>
+            <li v-for="i in 5">
+                <span v-if="i%2 === 0">偶数：{{i}}</span>
+                <span v-else>奇数：{{i}}</span>
+            </li>
+        </ul>
+    </div>
+<script src="../js/vue.min.js"></script>
+<script>
+    const vue = new Vue({
+        el:"#app",
+        data:{
+            "text": "数学",
+            "num":1,
+            lessons: [],
+            users:[
+                {name:'柳岩',gender:'女',age: 21},
+                {name:'刘亦菲',gender:'女',age: 24}
+            ],
+            show: true
+        },
+        methods:{
+            handleClick(){
+                //this 指向当前的对象
+                console.log("hello!");
+            }
+        }
+    });
+</script>
+</body>
+</html>

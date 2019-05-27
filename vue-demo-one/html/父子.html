@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div id="app">
+    <intr :title="msg"></intr>
+    <hr>
+    <les :less="lessons"></les>
+</div>
+<script src="../js/vue.min.js"></script>
+<script>
+
+    //局部组件
+    const intr = {
+        template:"<h1>{{title}}</h1>",
+        props:['title'],
+    }
+
+    const les = {
+        template:"<ul><li v-for='le in less'>{{le}}</li></ul>",
+        props:{
+            less:{
+                //定义传值的类型，及未传值时显示的默认值
+                type: Array,
+                default: ['ccc','ddd']
+            }
+        }
+    }
+
+    const vue = new Vue({
+        el:"#app",
+        data:{
+            msg: "大家好，我是渣渣辉！",
+            lessons:['java','php','python']
+        },
+        components:{
+            intr,
+            les
+        }
+    });
+</script>
+</body>
+</html>
